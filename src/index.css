@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Press Start 2p", cursive;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: rgb(2, 162, 152);
   background: linear-gradient(
     90deg,
@@ -25,9 +25,9 @@ h6 {
 }
 
 button {
-  font-family: "Press Start 2p", cursive;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.8rem;
-  border: 3px solid black;
+  border: 3px solid rgb(248, 10, 10);
   padding: 0.5rem 1rem;
   background-color: rgb(245, 158, 158);
   box-shadow: inset -3px -3px 0 0 rgb(252, 124, 124);

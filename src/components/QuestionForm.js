@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function QuestionForm(props) {
+function QuestionForm({ handleAddQuestion }) {
   const [formData, setFormData] = useState({
     prompt: "",
     answer1: "",
@@ -19,8 +19,23 @@ function QuestionForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
+    const newQuestion = {
+      "prompt": formData.prompt,
+      "answers": [formData.answer1, formData.answer2, formData.answer3, formData.answer4],
+      "correctIndex": Number(formData.correctIndex)
+    }
+
+    fetch("http://localhost:4000/questions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newQuestion),
+    })
+      .then((r) => r.json())
+      .then((postedQuestion) => handleAddQuestion(postedQuestion));
   }
+  
 
   return (
     <section>
@@ -30,6 +45,7 @@ function QuestionForm(props) {
           Prompt:
           <input
             type="text"
+            required
             name="prompt"
             value={formData.prompt}
             onChange={handleChange}
@@ -38,6 +54,7 @@ function QuestionForm(props) {
         <label>
           Answer 1:
           <input
+            required
             type="text"
             name="answer1"
             value={formData.answer1}
@@ -48,6 +65,7 @@ function QuestionForm(props) {
           Answer 2:
           <input
             type="text"
+            required
             name="answer2"
             value={formData.answer2}
             onChange={handleChange}
@@ -57,6 +75,7 @@ function QuestionForm(props) {
           Answer 3:
           <input
             type="text"
+            required
             name="answer3"
             value={formData.answer3}
             onChange={handleChange}
@@ -66,6 +85,7 @@ function QuestionForm(props) {
           Answer 4:
           <input
             type="text"
+            required
             name="answer4"
             value={formData.answer4}
             onChange={handleChange}
